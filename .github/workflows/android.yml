@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew :Cadastro:assembleDebug
 
       - name: Salvar APK como artefato
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@3c86c2e6e6ed6700310b59e6e2a2aefe510d1952
         with:
           name: app-debug
           path: Cadastro/build/outputs/apk/debug/*.apk
