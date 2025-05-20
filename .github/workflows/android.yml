@@ -2,32 +2,31 @@ name: Android CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
-    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar JDK
+      - name: Configurar JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: '17'
 
       - name: Permitir execução do gradlew
         run: chmod +x ./gradlew
 
       - name: Compilar o APK
-        run: ./gradlew :Cadastro:assembleDebug
+        run: ./gradlew assembleDebug
 
       - name: Salvar APK como artefato
-        uses: actions/upload-artifact@3c86c2e6e6ed6700310b59e6e2a2aefe510d1952
+        uses: actions/upload-artifact@v3
         with:
           name: app-debug
-          path: Cadastro/build/outputs/apk/debug/*.apk
+          path: Cadastro/build/outputs/apk/debug/Cadastro-debug.apk
+
